@@ -237,9 +237,6 @@ WebSocket::WebSocket()
 , _delegate(NULL)
 , _SSLConnection(0)
 , _wsProtocols(NULL)
-, _pendingFrameDataLen(0)
-, _currentDataLen(0)
-, _currentData(NULL)
 {
 }
 
@@ -261,7 +258,7 @@ bool WebSocket::init(const Delegate& delegate,
     bool ret = false;
     bool useSSL = false;
     std::string host = url;
-    size_t pos = 0;
+    int pos = 0;
     int port = 80;
     
     _delegate = const_cast<Delegate*>(&delegate);
@@ -280,18 +277,18 @@ bool WebSocket::init(const Delegate& delegate,
     }
     
     pos = host.find(":");
-    if(pos != host.npos) {
+    if(pos >= 0){
         port = atoi(host.substr(pos+1, host.size()).c_str());
     }
     
     pos = host.find("/", pos);
     std::string path = "/";
-    if(pos != host.npos){
+    if(pos >= 0){
         path += host.substr(pos + 1, host.size());
     }
     
     pos = host.find(":");
-    if(pos != host.npos){
+    if(pos >= 0){
         host.erase(pos, host.size());
     }
 
@@ -300,10 +297,8 @@ bool WebSocket::init(const Delegate& delegate,
     _port = port;
     _path = path;
     _SSLConnection = useSSL ? 1 : 0;
-
-    CCLOG("[WebSocket::init] _host: %s, _port: %d, _path: %s", _host.c_str(), _port, _path.c_str());
-
-    size_t protocolCount = 0;
+    
+    int protocolCount = 0;
     if (protocols && protocols->size() > 0)
     {
         protocolCount = protocols->size();
@@ -351,7 +346,7 @@ void WebSocket::send(const std::string& message)
         Data* data = new Data();
         data->bytes = new char[message.length()+1];
         strcpy(data->bytes, message.c_str());
-        data->len = (int)message.length();
+        data->len = message.length();
         msg->obj = data;
         _wsHelper->sendMessageToSubThread(msg);
     }
@@ -385,7 +380,6 @@ void WebSocket::close()
     CCLOG("websocket (%p) connection closed by client", this);
     _readyState = kStateClosed;
 
-    _wsHelper->quitSubThread();
     _wsHelper->joinSubThread();
     
     // onClose callback needs to be invoked at the end of this method
@@ -524,7 +518,7 @@ int WebSocket::onSocketCallback(struct libwebsocket_context *ctx,
                 std::list<WsMessage*>::iterator iter = _wsHelper->_subThreadWsMessageQueue->begin();
                 
                 int bytesWrite = 0;
-                for (; iter != _wsHelper->_subThreadWsMessageQueue->end();) {
+                for (; iter != _wsHelper->_subThreadWsMessageQueue->end(); ++iter) {
 
                     WsMessage* subThreadMsg = *iter;
                     
@@ -533,62 +527,35 @@ int WebSocket::onSocketCallback(struct libwebsocket_context *ctx,
                     {
                         Data* data = (Data*)subThreadMsg->obj;
 
-                        const size_t c_bufferSize = 4096;
-
-                        size_t remaining = data->len - data->issued;
-                        size_t n = min(remaining, c_bufferSize);
-
-                        unsigned char* buf = new unsigned char[LWS_SEND_BUFFER_PRE_PADDING + n + LWS_SEND_BUFFER_POST_PADDING];
-                        memcpy((char*)&buf[LWS_SEND_BUFFER_PRE_PADDING], data->bytes + data->issued, n);
+                        unsigned char* buf = new unsigned char[LWS_SEND_BUFFER_PRE_PADDING
+                                                               + data->len + LWS_SEND_BUFFER_POST_PADDING];
                         
-                        int writeProtocol;
+                        memset(&buf[LWS_SEND_BUFFER_PRE_PADDING], 0, data->len);
+                        memcpy((char*)&buf[LWS_SEND_BUFFER_PRE_PADDING], data->bytes, data->len);
                         
-                        if (data->issued == 0)
+                        enum libwebsocket_write_protocol writeProtocol;
+                        
+                        if (WS_MSG_TO_SUBTRHEAD_SENDING_STRING == subThreadMsg->what)
                         {
-							if (WS_MSG_TO_SUBTRHEAD_SENDING_STRING == subThreadMsg->what)
-							{
-								writeProtocol = LWS_WRITE_TEXT;
-							}
-							else
-							{
-								writeProtocol = LWS_WRITE_BINARY;
-							}
-
-							// If we have more than 1 fragment
-							if (data->len > c_bufferSize)
-                                writeProtocol |= LWS_WRITE_NO_FIN;
+                            writeProtocol = LWS_WRITE_TEXT;
                         }
                         else
                         {
-                        	// we are in the middle of fragments
-                        	writeProtocol = LWS_WRITE_CONTINUATION;
-                        	// and if not in the last fragment
-                        	if (remaining != n)
-                        		writeProtocol |= LWS_WRITE_NO_FIN;
+                            writeProtocol = LWS_WRITE_BINARY;
                         }
-
-                        bytesWrite = libwebsocket_write(wsi,  &buf[LWS_SEND_BUFFER_PRE_PADDING], n, (libwebsocket_write_protocol)writeProtocol);
-
-                        // Buffer overrun?
-                        if (bytesWrite < 0)
-                        {
-                            break;
+                        
+                        bytesWrite = libwebsocket_write(wsi,  &buf[LWS_SEND_BUFFER_PRE_PADDING], data->len, writeProtocol);
+                        
+                        if (bytesWrite < 0) {
+                            CCLOGERROR("%s", "libwebsocket_write error...");
                         }
-                        // Do we have another fragments to send?
-                        else if (remaining != n)
-                        {
-                            data->issued += n;
-                            break;
+                        if (bytesWrite < data->len) {
+                            CCLOGERROR("Partial write LWS_CALLBACK_CLIENT_WRITEABLE\n");
                         }
-                        // Safely done!
-                        else
-                        {
-                            CC_SAFE_DELETE_ARRAY(data->bytes);
-                            CC_SAFE_DELETE(data);
-                            CC_SAFE_DELETE_ARRAY(buf);
-                            _wsHelper->_subThreadWsMessageQueue->erase(iter++);
-                            CC_SAFE_DELETE(subThreadMsg);
-                        }
+                        
+                        CC_SAFE_DELETE_ARRAY(data->bytes);
+                        CC_SAFE_DELETE(data);
+                        CC_SAFE_DELETE_ARRAY(buf);
                     }
                     
                     CC_SAFE_DELETE(subThreadMsg);
@@ -625,63 +592,32 @@ int WebSocket::onSocketCallback(struct libwebsocket_context *ctx,
             {
                 if (in && len > 0)
                 {
-                    // Accumulate the data (increasing the buffer as we go)
-                    if (_currentDataLen == 0)
+                    WsMessage* msg = new WsMessage();
+                    msg->what = WS_MSG_TO_UITHREAD_MESSAGE;
+                    
+                    char* bytes = NULL;
+                    Data* data = new Data();
+                    
+                    if (lws_frame_is_binary(wsi))
                     {
-                        _currentData = new char[len];
-                        memcpy (_currentData, in, len);
-                        _currentDataLen = len;
+                        
+                        bytes = new char[len];
+                        data->isBinary = true;
                     }
                     else
                     {
-                        char *new_data = new char [_currentDataLen + len];
-                        memcpy (new_data, _currentData, _currentDataLen);
-                        memcpy (new_data + _currentDataLen, in, len);
-                        CC_SAFE_DELETE_ARRAY(_currentData);
-                        _currentData = new_data;
-                        _currentDataLen = _currentDataLen + len;
+                        bytes = new char[len+1];
+                        bytes[len] = '\0';
+                        data->isBinary = false;
                     }
 
-                    _pendingFrameDataLen = libwebsockets_remaining_packet_payload (wsi);
-
-                    if (_pendingFrameDataLen > 0)
-                    {
-                        //CCLOG("%ld bytes of pending data to receive, consider increasing the libwebsocket rx_buffer_size value.", _pendingFrameDataLen);
-                    }
-
-                    // If no more data pending, send it to the client thread
-                    if (_pendingFrameDataLen == 0)
-                    {
-                        WsMessage* msg = new WsMessage();
-                        msg->what = WS_MSG_TO_UITHREAD_MESSAGE;
-
-                        char* bytes = NULL;
-                        Data* data = new Data();
-
-                        if (lws_frame_is_binary(wsi))
-                        {
-                            bytes = new char[_currentDataLen];
-                            data->isBinary = true;
-                        }
-                        else
-                        {
-                            bytes = new char[_currentDataLen+1];
-                            bytes[_currentDataLen] = '\0';
-                            data->isBinary = false;
-                        }
-                        
-                        memcpy(bytes, _currentData, _currentDataLen);
-                        
-                        data->bytes = bytes;
-                        data->len = _currentDataLen;
-                        msg->obj = (void*)data;
-                        
-                        CC_SAFE_DELETE_ARRAY (_currentData);
-                        _currentData = NULL;
-                        _currentDataLen = 0;
-                        
-                        _wsHelper->sendMessageToUIThread(msg);
-                    }
+                    memcpy(bytes, in, len);
+                    
+                    data->bytes = bytes;
+                    data->len = len;
+                    msg->obj = (void*)data;
+                    
+                    _wsHelper->sendMessageToUIThread(msg);
                 }
             }
             break;
