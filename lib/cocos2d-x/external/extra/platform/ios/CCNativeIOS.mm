@@ -41,7 +41,7 @@ static CCNativeIOS *s_sharedInstance;
         return;
     }
     
-    CCLOG("[CCNativeIOS] showActivityIndicator()");
+    CCLOGINFO("[CCNativeIOS] showActivityIndicator()");
     activityIndicatorView_ = [UIActivityIndicatorView  alloc];
     [activityIndicatorView_ initWithActivityIndicatorStyle:style];
     [activityIndicatorView_ autorelease];
@@ -62,7 +62,7 @@ static CCNativeIOS *s_sharedInstance;
         return;
     }
     
-    CCLOG("[CCNativeIOS] hideActivityIndicator()");
+    CCLOGINFO("[CCNativeIOS] hideActivityIndicator()");
     [activityIndicatorView_ removeFromSuperview];
     [activityIndicatorView_ release];
     activityIndicatorView_ = nil;
@@ -82,7 +82,7 @@ static CCNativeIOS *s_sharedInstance;
         return;
     }
     
-    CCLOG("[CCNativeIOS] createAlertView() title: %s, message: %s, cancelButtonTitle: %s",
+    CCLOGINFO("[CCNativeIOS] createAlertView() title: %s, message: %s, cancelButtonTitle: %s",
           utf8cstr(title), utf8cstr(message), utf8cstr(cancelButtonTitle));
     alertView_ = [[UIAlertView alloc] initWithTitle:title
                                             message:message
@@ -99,7 +99,7 @@ static CCNativeIOS *s_sharedInstance;
         return 0;
     }
 
-    CCLOG("[CCNativeIOS] addAlertButton() buttonTitle: %s", utf8cstr(buttonTitle));
+    CCLOGINFO("[CCNativeIOS] addAlertButton() buttonTitle: %s", utf8cstr(buttonTitle));
     return [alertView_ addButtonWithTitle:buttonTitle];
 }
 
@@ -111,7 +111,7 @@ static CCNativeIOS *s_sharedInstance;
         return;
     }
 
-    CCLOG("[CCNativeIOS] showAlertViewWithDelegate()");
+    CCLOGINFO("[CCNativeIOS] showAlertViewWithDelegate()");
     alertViewDelegates_ = delegate;
 #if CC_LUA_ENGINE_ENABLED > 0
     [self removeAlertViewLuaListener];
@@ -127,7 +127,7 @@ static CCNativeIOS *s_sharedInstance;
         return;
     }
     
-    CCLOG("[CCNativeIOS] removeAlertView()");
+    CCLOGINFO("[CCNativeIOS] removeAlertView()");
     [alertView_ release];
     alertView_ = nil;
 #if CC_LUA_ENGINE_ENABLED > 0
@@ -144,7 +144,7 @@ static CCNativeIOS *s_sharedInstance;
         return;
     }
     
-    CCLOG("[CCNativeIOS] cancelAlertView()");
+    CCLOGINFO("[CCNativeIOS] cancelAlertView()");
     [alertView_ dismissWithClickedButtonIndex:0 animated:YES];
     [self removeAlertView];
 }
@@ -158,7 +158,7 @@ static CCNativeIOS *s_sharedInstance;
         return;
     }
     
-    CCLOG("[CCNativeIOS] showAlertViewWithLuaListener()");
+    CCLOGINFO("[CCNativeIOS] showAlertViewWithLuaListener()");
     alertViewLuaListener_ = listener;
     alertViewDelegates_ = nil;
     [alertView_ show];
@@ -183,7 +183,7 @@ static CCNativeIOS *s_sharedInstance;
         return;
     }
     
-    CCLOG("[CCNativeIOS] showAlertViewWithObjcDelegate()");
+    CCLOGINFO("[CCNativeIOS] showAlertViewWithObjcDelegate()");
     [alertView_ setDelegate:delegate];
     [alertView_ show];
 }

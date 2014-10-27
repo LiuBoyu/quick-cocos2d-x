@@ -578,7 +578,7 @@ jobject CCLuaJavaBridge::checkHashMap(lua_State *L)
     while (lua_next(L, -2))
     {
         string key = lua_tostring(L, -2);
-        LOGD("key-%s", key.c_str());
+        //LOGD("key-%s", key.c_str());
         stdMap[key] = checkObj(L);
         lua_pop(L, 1);
     }
@@ -660,7 +660,7 @@ jobject CCLuaJavaBridge::checkArrayList(lua_State *L)
     while (lua_next(L, -2)) {
         int index = lua_tonumber(L, -2) - 1;
         string temp = checkObj(L);
-        LOGD("%s", temp.c_str());
+        //LOGD("%s", temp.c_str());
         strings.push_back(checkObj(L));
         lua_pop(L, 1);
     }
@@ -712,7 +712,7 @@ int CCLuaJavaBridge::callJavaStaticMethod(lua_State *L)
     	return 2;
     }
 
-    LOGD("%s", "CCLuaJavaBridge::callJavaStaticMethod(lua_State *L)");
+    //LOGD("%s", "CCLuaJavaBridge::callJavaStaticMethod(lua_State *L)");
 
     const char *className  = lua_tostring(L, -4);
     const char *methodName = lua_tostring(L, -3);
@@ -791,8 +791,7 @@ int CCLuaJavaBridge::callJavaStaticMethod(lua_State *L)
     	return 2;
     }
 
-	LOGD("CCLuaJavaBridge::callJavaStaticMethod(\"%s\", \"%s\", args, \"%s\") SUCCESS",
-			className, methodName, methodSig);
+	//LOGD("CCLuaJavaBridge::callJavaStaticMethod(\"%s\", \"%s\", args, \"%s\") SUCCESS", className, methodName, methodSig);
 
 	lua_pushboolean(L, 1);
 	return 1 + call.pushReturnValue(L);
