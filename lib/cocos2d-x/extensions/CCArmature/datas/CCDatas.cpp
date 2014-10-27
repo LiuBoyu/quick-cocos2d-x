@@ -91,7 +91,11 @@ void CCBaseData::subtract(CCBaseData *from, CCBaseData *to)
 
 		isUseColorInfo = true;
 	}
-
+    else
+    {
+        a = r = g = b = 0;
+        isUseColorInfo = false;
+    }
 
 	if (skewX > M_PI)
 	{
