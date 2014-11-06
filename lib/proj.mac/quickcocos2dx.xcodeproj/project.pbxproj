@@ -57,7 +57,6 @@
 		F44A20D4182A51E800E181EB /* libbase64.c in Sources */ = {isa = PBXBuildFile; fileRef = F44A20D3182A51E800E181EB /* libbase64.c */; };
 		F44E611A182AC7E600016FD1 /* Cocos2dxLuaLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44E6118182AC7E600016FD1 /* Cocos2dxLuaLoader.cpp */; };
 		F44F3C3716EB1B54009ED7F0 /* snapshot.c in Sources */ = {isa = PBXBuildFile; fileRef = F44F3C3616EB1B54009ED7F0 /* snapshot.c */; };
-		F45FF35416C7DE1F00275222 /* libcurl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F45FF35316C7DE1F00275222 /* libcurl.dylib */; };
 		F477225D1843450000EBA0D4 /* debugger.c in Sources */ = {isa = PBXBuildFile; fileRef = F477225A1843450000EBA0D4 /* debugger.c */; };
 		F477B8491757404200260C19 /* CCCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F477B7391757404200260C19 /* CCCamera.cpp */; };
 		F477B84A1757404200260C19 /* CCConfiguration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F477B73B1757404200260C19 /* CCConfiguration.cpp */; };
@@ -139,7 +138,6 @@
 		F4CB87C1180D042F00D81CF3 /* CCNative.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4CB87BA180D042F00D81CF3 /* CCNative.mm */; };
 		F4CB87C2180D042F00D81CF3 /* CCNativeMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4CB87BC180D042F00D81CF3 /* CCNativeMac.mm */; };
 		F4CB87C3180D042F00D81CF3 /* OpenUDIDMac.m in Sources */ = {isa = PBXBuildFile; fileRef = F4CB87BF180D042F00D81CF3 /* OpenUDIDMac.m */; };
-		F4DE082416800061005DB2DB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4DE082316800061005DB2DB /* Cocoa.framework */; };
 		F4DE0AA516800201005DB2DB /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F4DE0A9716800201005DB2DB /* CDAudioManager.m */; };
 		F4DE0AA816800201005DB2DB /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = F4DE0A9A16800201005DB2DB /* CDOpenALSupport.m */; };
 		F4DE0AAA16800201005DB2DB /* CDXMacOSXSupport.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4DE0A9C16800201005DB2DB /* CDXMacOSXSupport.mm */; };
@@ -732,8 +730,6 @@
 		F4E87F881770071500577406 /* vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec3.h; sourceTree = "<group>"; };
 		F4E87F891770071500577406 /* vec4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec4.h; sourceTree = "<group>"; };
 		F4E87F8B1770071500577406 /* aabb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aabb.c; sourceTree = "<group>"; };
-		F4E87F8C1770071500577406 /* ChangeLog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog; sourceTree = "<group>"; };
-		F4E87F8D1770071500577406 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		F4E87F8F1770071500577406 /* mat4stack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mat4stack.c; sourceTree = "<group>"; };
 		F4E87F901770071500577406 /* matrix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = matrix.c; sourceTree = "<group>"; };
 		F4E87F911770071500577406 /* mat3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mat3.c; sourceTree = "<group>"; };
@@ -1038,10 +1034,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F45FF35416C7DE1F00275222 /* libcurl.dylib in Frameworks */,
-				F4DE082416800061005DB2DB /* Cocoa.framework in Frameworks */,
-				F41D98FC17F08B9E007171D8 /* libwebsockets.a in Frameworks */,
 				F411F3E1175CEAFC00EF549A /* libluajit2.a in Frameworks */,
+				F41D98FC17F08B9E007171D8 /* libwebsockets.a in Frameworks */,
 				F4E880EE1770075400577406 /* libwebp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1174,12 +1168,12 @@
 		F431523C180CF7E30046351C /* include */ = {
 			isa = PBXGroup;
 			children = (
+				F4315242180CF7E30046351C /* constraints */,
 				F431523D180CF7E30046351C /* chipmunk.h */,
 				F431523E180CF7E30046351C /* chipmunk_ffi.h */,
 				F431523F180CF7E30046351C /* chipmunk_private.h */,
 				F4315240180CF7E30046351C /* chipmunk_types.h */,
 				F4315241180CF7E30046351C /* chipmunk_unsafe.h */,
-				F4315242180CF7E30046351C /* constraints */,
 				F431524F180CF7E30046351C /* cpArbiter.h */,
 				F4315250180CF7E30046351C /* cpBB.h */,
 				F4315251180CF7E30046351C /* cpBody.h */,
@@ -1223,8 +1217,8 @@
 		F4315261180CF7E30046351C /* src */ = {
 			isa = PBXGroup;
 			children = (
-				F4315262180CF7E30046351C /* chipmunk.c */,
 				F4315263180CF7E30046351C /* constraints */,
+				F4315262180CF7E30046351C /* chipmunk.c */,
 				F431526F180CF7E30046351C /* cpArbiter.c */,
 				F4315270180CF7E30046351C /* cpArray.c */,
 				F4315271180CF7E30046351C /* cpBB.c */,
@@ -1268,12 +1262,12 @@
 		F43152A5180CF7FD0046351C /* luaproxy */ = {
 			isa = PBXGroup;
 			children = (
+				F43152AA180CF7FD0046351C /* tolua */,
+				F43152B5180CF7FD0046351C /* ui */,
 				F43152A6180CF7FD0046351C /* LuaEventHandler.cpp */,
 				F43152A7180CF7FD0046351C /* LuaEventHandler.hpp */,
 				F43152A8180CF7FD0046351C /* LuaProxy.hpp */,
 				F43152A9180CF7FD0046351C /* LuaTableView.hpp */,
-				F43152AA180CF7FD0046351C /* tolua */,
-				F43152B5180CF7FD0046351C /* ui */,
 			);
 			name = luaproxy;
 			path = external/luaproxy;
@@ -1319,6 +1313,8 @@
 		F477B8AB1757405000260C19 /* platform */ = {
 			isa = PBXGroup;
 			children = (
+				F4E880BC1770074500577406 /* mac */,
+				F477B8EA1757407300260C19 /* third_party */,
 				F4E880A91770074500577406 /* CCAccelerometerDelegate.h */,
 				F4E880AA1770074500577406 /* CCApplicationProtocol.h */,
 				F426146617E816FE00D37B8D /* CCCommon.cpp */,
@@ -1339,10 +1335,8 @@
 				F4E880B91770074500577406 /* CCThread.h */,
 				F4E880BA1770074500577406 /* CCZipFile.cpp */,
 				F4E880BB1770074500577406 /* CCZipFile.h */,
-				F4E880BC1770074500577406 /* mac */,
 				F4E880D31770074500577406 /* platform.cpp */,
 				F4E880D41770074500577406 /* platform.h */,
-				F477B8EA1757407300260C19 /* third_party */,
 			);
 			path = platform;
 			sourceTree = "<group>";
@@ -1390,14 +1384,14 @@
 			isa = PBXGroup;
 			children = (
 				F490FB0E180D64B6000A9B1C /* animation */,
-				F490FB15180D64B6000A9B1C /* CCArmature.cpp */,
-				F490FB16180D64B6000A9B1C /* CCArmature.h */,
-				F490FB17180D64B6000A9B1C /* CCBone.cpp */,
-				F490FB18180D64B6000A9B1C /* CCBone.h */,
 				F490FB19180D64B6000A9B1C /* datas */,
 				F490FB1C180D64B6000A9B1C /* display */,
 				F490FB29180D64B6000A9B1C /* external_tool */,
 				F490FB49180D64B6000A9B1C /* utils */,
+				F490FB15180D64B6000A9B1C /* CCArmature.cpp */,
+				F490FB16180D64B6000A9B1C /* CCArmature.h */,
+				F490FB17180D64B6000A9B1C /* CCBone.cpp */,
+				F490FB18180D64B6000A9B1C /* CCBone.h */,
 			);
 			path = CCArmature;
 			sourceTree = "<group>";
@@ -1446,9 +1440,9 @@
 		F490FB29180D64B6000A9B1C /* external_tool */ = {
 			isa = PBXGroup;
 			children = (
+				F490FB2E180D64B6000A9B1C /* Json */,
 				F490FB2A180D64B6000A9B1C /* CCTexture2DMutable.cpp */,
 				F490FB2B180D64B6000A9B1C /* CCTexture2DMutable.h */,
-				F490FB2E180D64B6000A9B1C /* Json */,
 				F490FB43180D64B6000A9B1C /* sigslot.h */,
 			);
 			path = external_tool;
@@ -1457,9 +1451,9 @@
 		F490FB2E180D64B6000A9B1C /* Json */ = {
 			isa = PBXGroup;
 			children = (
+				F490FB31180D64B6000A9B1C /* lib_json */,
 				F490FB2F180D64B6000A9B1C /* CSContentJsonDictionary.cpp */,
 				F490FB30180D64B6000A9B1C /* CSContentJsonDictionary.h */,
-				F490FB31180D64B6000A9B1C /* lib_json */,
 			);
 			path = Json;
 			sourceTree = "<group>";
@@ -1529,12 +1523,12 @@
 		F4CB8652180D017700D81CF3 /* extra */ = {
 			isa = PBXGroup;
 			children = (
-				F4CB8653180D017700D81CF3 /* cocos2dx_extra.h */,
 				F4CB8654180D017700D81CF3 /* crypto */,
 				F4CB8660180D017700D81CF3 /* luabinding */,
 				F4CB8669180D017700D81CF3 /* native */,
 				F4CB866C180D017700D81CF3 /* network */,
 				F4CB8672180D017700D81CF3 /* platform */,
+				F4CB8653180D017700D81CF3 /* cocos2dx_extra.h */,
 			);
 			name = extra;
 			path = external/extra;
@@ -1544,9 +1538,9 @@
 			isa = PBXGroup;
 			children = (
 				F4CB8655180D017700D81CF3 /* base64 */,
+				F4CB865A180D017700D81CF3 /* md5 */,
 				F4CB8658180D017700D81CF3 /* CCCrypto.cpp */,
 				F4CB8659180D017700D81CF3 /* CCCrypto.h */,
-				F4CB865A180D017700D81CF3 /* md5 */,
 			);
 			path = crypto;
 			sourceTree = "<group>";
@@ -1626,10 +1620,10 @@
 				F4CB874B180D02F600D81CF3 /* filesystem */,
 				F4CB874E180D02F600D81CF3 /* lpack */,
 				F427F52818233E9A00856895 /* lsqlite3 */,
-				F4CB8751180D02F600D81CF3 /* lua_extensions.c */,
-				F4CB8752180D02F600D81CF3 /* lua_extensions.h */,
 				F4CB877A180D02F600D81CF3 /* socket */,
 				F4CB879D180D02F600D81CF3 /* zlib */,
+				F4CB8751180D02F600D81CF3 /* lua_extensions.c */,
+				F4CB8752180D02F600D81CF3 /* lua_extensions.h */,
 			);
 			path = lua_extensions;
 			sourceTree = "<group>";
@@ -1716,11 +1710,11 @@
 		F4CB87B8180D042F00D81CF3 /* mac */ = {
 			isa = PBXGroup;
 			children = (
+				F4CB87BD180D042F00D81CF3 /* openudid */,
 				F4CB87B9180D042F00D81CF3 /* CCCryptoMac.mm */,
 				F4CB87BA180D042F00D81CF3 /* CCNative.mm */,
 				F4CB87BB180D042F00D81CF3 /* CCNativeMac.h */,
 				F4CB87BC180D042F00D81CF3 /* CCNativeMac.mm */,
-				F4CB87BD180D042F00D81CF3 /* openudid */,
 			);
 			path = mac;
 			sourceTree = "<group>";
@@ -1740,10 +1734,10 @@
 				F477B8F3175740BF00260C19 /* AssetsManager */,
 				F490FB0D180D64B6000A9B1C /* CCArmature */,
 				F4E880F517700E5E00577406 /* CCBReader */,
-				F4703CB81777F0D900A8A9E9 /* cocos-ext.h */,
-				F477B92C175740BF00260C19 /* ExtensionMacros.h */,
 				F477B92D175740BF00260C19 /* GUI */,
 				F41D98F117F08B85007171D8 /* network */,
+				F4703CB81777F0D900A8A9E9 /* cocos-ext.h */,
+				F477B92C175740BF00260C19 /* ExtensionMacros.h */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -1801,18 +1795,7 @@
 			children = (
 				F4E87F15177006E900577406 /* actions */,
 				F4E87F30177006E900577406 /* base_nodes */,
-				F477B7391757404200260C19 /* CCCamera.cpp */,
-				F477B73A1757404200260C19 /* CCCamera.h */,
-				F477B73B1757404200260C19 /* CCConfiguration.cpp */,
-				F477B73C1757404200260C19 /* CCConfiguration.h */,
-				F477B73D1757404200260C19 /* CCDirector.cpp */,
-				F477B73E1757404200260C19 /* CCDirector.h */,
-				F477B73F1757404200260C19 /* ccFPSImages.c */,
-				F477B7401757404200260C19 /* ccFPSImages.h */,
-				F477B7411757404200260C19 /* CCScheduler.cpp */,
-				F477B7421757404200260C19 /* CCScheduler.h */,
 				F4E87F471770071500577406 /* cocoa */,
-				F477B75C1757404200260C19 /* cocos2d.cpp */,
 				F4E87F641770071500577406 /* draw_nodes */,
 				F4E87F6B1770071500577406 /* effects */,
 				F4E87F701770071500577406 /* include */,
@@ -1832,6 +1815,17 @@
 				F4E880281770071600577406 /* textures */,
 				F4E880331770071600577406 /* tilemap_parallax_nodes */,
 				F4E880401770071600577406 /* touch_dispatcher */,
+				F477B7391757404200260C19 /* CCCamera.cpp */,
+				F477B73A1757404200260C19 /* CCCamera.h */,
+				F477B73B1757404200260C19 /* CCConfiguration.cpp */,
+				F477B73C1757404200260C19 /* CCConfiguration.h */,
+				F477B73D1757404200260C19 /* CCDirector.cpp */,
+				F477B73E1757404200260C19 /* CCDirector.h */,
+				F477B73F1757404200260C19 /* ccFPSImages.c */,
+				F477B7401757404200260C19 /* ccFPSImages.h */,
+				F477B7411757404200260C19 /* CCScheduler.cpp */,
+				F477B7421757404200260C19 /* CCScheduler.h */,
+				F477B75C1757404200260C19 /* cocos2d.cpp */,
 			);
 			path = cocos2dx;
 			sourceTree = "<group>";
@@ -1895,6 +1889,7 @@
 		F4DE0AB216800261005DB2DB /* cocos2dx_support */ = {
 			isa = PBXGroup;
 			children = (
+				F4B4EEC316C7E05F00736FFE /* platform */,
 				F47872E5180C8F26008F0508 /* CCBProxy.cpp */,
 				F47872E6180C8F26008F0508 /* CCBProxy.h */,
 				F4B4EEC016C7E05800736FFE /* CCLuaBridge.cpp */,
@@ -1915,7 +1910,6 @@
 				F41D98FE17F08BEB007171D8 /* Lua_web_socket.h */,
 				F4A9C07B16BC3AF400088CF7 /* LuaCocos2d.cpp */,
 				F4A9C07C16BC3AF400088CF7 /* LuaCocos2d.h */,
-				F4B4EEC316C7E05F00736FFE /* platform */,
 				F44F3C3616EB1B54009ED7F0 /* snapshot.c */,
 				F44F3C3816EB1BE2009ED7F0 /* snapshot.h */,
 				F4A9C08816BC3AF400088CF7 /* tolua_fix.c */,
@@ -2081,8 +2075,8 @@
 		F4E87F7A1770071500577406 /* kazmath */ = {
 			isa = PBXGroup;
 			children = (
-				F4E87F7B1770071500577406 /* aabb.h */,
 				F4E87F7C1770071500577406 /* GL */,
+				F4E87F7B1770071500577406 /* aabb.h */,
 				F4E87F7F1770071500577406 /* kazmath.h */,
 				F4E87F801770071500577406 /* mat3.h */,
 				F4E87F811770071500577406 /* mat4.h */,
@@ -2110,10 +2104,8 @@
 		F4E87F8A1770071500577406 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				F4E87F8B1770071500577406 /* aabb.c */,
-				F4E87F8C1770071500577406 /* ChangeLog */,
-				F4E87F8D1770071500577406 /* CMakeLists.txt */,
 				F4E87F8E1770071500577406 /* GL */,
+				F4E87F8B1770071500577406 /* aabb.c */,
 				F4E87F911770071500577406 /* mat3.c */,
 				F4E87F921770071500577406 /* mat4.c */,
 				F4E87F931770071500577406 /* neon_matrix_impl.c */,
@@ -2287,6 +2279,12 @@
 		F4E87FF51770071600577406 /* support */ = {
 			isa = PBXGroup;
 			children = (
+				F4E880041770071600577406 /* component */,
+				F4E880091770071600577406 /* data_support */,
+				F4E8800E1770071600577406 /* image_support */,
+				F4E880111770071600577406 /* tinyxml2 */,
+				F4E880161770071600577406 /* user_default */,
+				F4E8801B1770071600577406 /* zip_support */,
 				F4E87FF61770071600577406 /* base64.cpp */,
 				F4E87FF71770071600577406 /* base64.h */,
 				F4E87FF81770071600577406 /* CCNotificationCenter.cpp */,
@@ -2301,16 +2299,10 @@
 				F4E880011770071600577406 /* ccUtils.h */,
 				F4E880021770071600577406 /* CCVertex.cpp */,
 				F4E880031770071600577406 /* CCVertex.h */,
-				F4E880041770071600577406 /* component */,
-				F4E880091770071600577406 /* data_support */,
-				F4E8800E1770071600577406 /* image_support */,
-				F4E880111770071600577406 /* tinyxml2 */,
 				F4E880141770071600577406 /* TransformUtils.cpp */,
 				F4E880151770071600577406 /* TransformUtils.h */,
-				F4E880161770071600577406 /* user_default */,
 				F4A3A8E4182DA3E50000EDD1 /* xxtea.c */,
 				F4A3A8E5182DA3E50000EDD1 /* xxtea.h */,
-				F4E8801B1770071600577406 /* zip_support */,
 			);
 			path = support;
 			sourceTree = "<group>";
@@ -2630,7 +2622,7 @@
 		F4DE081716800060005DB2DB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = qeeplay.com;
 			};
 			buildConfigurationList = F4DE081A16800061005DB2DB /* Build configuration list for PBXProject "quickcocos2dx" */;
@@ -2976,29 +2968,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
@@ -3007,22 +2993,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Release;
@@ -3030,11 +3014,6 @@
 		F4DE083216800061005DB2DB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
-				CLANG_CXX_LIBRARY = "libc++";
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = quickcocos2dx.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3044,7 +3023,6 @@
 					CC_TARGET_OS_MAC,
 					"CC_LUA_ENGINE_ENABLED=1",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/include/libxml2\"",
 					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx\"",
@@ -3074,20 +3052,13 @@
 					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua/luajit/mac\"",
 					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/external/libwebsockets/mac/lib\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
 		F4DE083316800061005DB2DB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
-				CLANG_CXX_LIBRARY = "libc++";
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = quickcocos2dx.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3096,7 +3067,6 @@
 					CC_TARGET_OS_MAC,
 					"CC_LUA_ENGINE_ENABLED=1",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/include/libxml2\"",
 					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx\"",
@@ -3126,9 +3096,7 @@
 					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua/luajit/mac\"",
 					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/external/libwebsockets/mac/lib\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Release;
 		};
