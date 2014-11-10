@@ -52,7 +52,7 @@ static int SendBinaryMessageToLua(int nHandler,const unsigned char* pTable,int n
     return nRet;
 }
 
-class LuaWebSocket: public WebSocket,public WebSocket::Delegate
+class LuaWebSocket: public WebSocket::Delegate, public WebSocket
 {
 public:
     virtual ~LuaWebSocket()
@@ -559,5 +559,5 @@ TOLUA_API int tolua_web_socket_open(lua_State* tolua_S){
         tolua_function(tolua_S, "sendBinaryMsg", tolua_Cocos2d_WebSocket_sendBinaryMsg00);
       tolua_endmodule(tolua_S);
     tolua_endmodule(tolua_S);
-	return 1;
+    return 1;
 }

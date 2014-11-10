@@ -30,9 +30,13 @@
 #ifndef __CC_WEBSOCKET_H__
 #define __CC_WEBSOCKET_H__
 
+#include <string>
+#include <vector>
 #include "ExtensionMacros.h"
 #include "cocos2d.h"
-#include "libwebsockets.h"
+struct libwebsocket;
+struct libwebsocket_context;
+struct libwebsocket_protocols;
 #include <list>
 
 NS_CC_EXT_BEGIN
@@ -143,7 +147,7 @@ private:
     friend class WebSocketCallbackWrapper;
     int onSocketCallback(struct libwebsocket_context *ctx,
                          struct libwebsocket *wsi,
-                         enum libwebsocket_callback_reasons reason,
+                         int reason,
                          void *user, void *in, size_t len);
     
 private:
