@@ -303,6 +303,36 @@ static int tolua_cocos2dx_extra_luabinding_CCCrypto_MD500(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: MD5FileLua of class  CCCrypto */
+#ifndef TOLUA_DISABLE_tolua_cocos2dx_extra_luabinding_CCCrypto_MD5File00
+static int tolua_cocos2dx_extra_luabinding_CCCrypto_MD5File00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"CCCrypto",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const char* path = ((const char*)  tolua_tostring(tolua_S,2,0));
+  {
+     CCCrypto::MD5FileLua(path);
+   
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'MD5File'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: showActivityIndicator of class  CCNative */
 #ifndef TOLUA_DISABLE_tolua_cocos2dx_extra_luabinding_CCNative_showActivityIndicator00
 static int tolua_cocos2dx_extra_luabinding_CCNative_showActivityIndicator00(lua_State* tolua_S)
@@ -1475,6 +1505,7 @@ TOLUA_API int tolua_cocos2dx_extra_luabinding_open (lua_State* tolua_S)
    tolua_function(tolua_S,"encodeBase64",tolua_cocos2dx_extra_luabinding_CCCrypto_encodeBase6400);
    tolua_function(tolua_S,"decodeBase64",tolua_cocos2dx_extra_luabinding_CCCrypto_decodeBase6400);
    tolua_function(tolua_S,"MD5",tolua_cocos2dx_extra_luabinding_CCCrypto_MD500);
+   tolua_function(tolua_S,"MD5File",tolua_cocos2dx_extra_luabinding_CCCrypto_MD5File00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"CCNative","CCNative","",NULL);
   tolua_beginmodule(tolua_S,"CCNative");
